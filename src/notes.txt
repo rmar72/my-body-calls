@@ -1,0 +1,18 @@
+
+
+add some form of footer comment to summarize or add notes for the day
+
+have a way to add what one is eating and drinking
+
+have a slider to track severity of symptoms
+
+pdf report - 
+  install a library ✅
+  work out a prototype ✅
+  provide download link ✅
+  modal to preview
+  translate over react look onto pdfviewer
+
+diff calendar/date util converter fns
+
+drag n drop symptom for visual precedence purpose
