@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './chart.css';
 import { PDFViewer, PDFDownloadLink } from '@react-pdf/renderer';
 import MyPDF from './myPdf';
+import ModalView from '../utils/modal';
 
 const foo = [...Array(31).keys()];
 
@@ -111,8 +112,11 @@ var symptomsList = [
 ];
 
 function Chart() {
+  const [pdfPreview, setpdfPreview] = useState(false);
+
   return (
     <div className="chart" style={{width: '99%'}}>
+      <button onClick={() => setpdfPreview(true)}>Preview PDF</button>
       <h1>Chart</h1>
       <table style={{width: '99%'}}>
         <thead style={{width: 500}}>
@@ -156,14 +160,29 @@ function Chart() {
           }
         </tbody>
       </table>
-      <div>
-        <PDFViewer style={{width: '550px'}}>
-          <MyPDF />
-        </PDFViewer>
-        <PDFDownloadLink document={<MyPDF />} fileName="pdfSample.pdf">
-          {({ blob, url, loading, error }) => (loading ? 'Loading document...' : 'Download now!')}
-        </PDFDownloadLink>
-      </div>
+      
+      {pdfPreview &&
+        <div>
+          <ModalView 
+            title="PDF Preview"
+            closePreview={() => setpdfPreview(false)}
+            renderContent={() => {
+              return (
+                <div>
+                  <PDFViewer style={{width: 850, height: 500}}>
+                    <MyPDF />
+                  </PDFViewer>
+                  {/* <div>
+                    <PDFDownloadLink document={<MyPDF />} fileName="pdfSample.pdf">
+                      {({ blob, url, loading, error }) => (loading ? 'Loading document...' : 'Download now!')}
+                    </PDFDownloadLink>
+                  </div> */}
+                </div>
+              )
+            }}
+          />
+        </div>
+      }
     </div>
   );
 }
