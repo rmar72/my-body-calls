@@ -8,7 +8,7 @@ const foo = [...Array(31).keys()];
 
 const foo2 = [...Array(23).keys()];
 
-var symptomsList = [
+var incomingSymptomsList = [
   {
     key: 0,
     description: 'sharp left chest pain'
@@ -112,6 +112,7 @@ var symptomsList = [
 ];
 
 function Chart() {
+  const [symptomsList, setSymptomsList] = useState(incomingSymptomsList);
   const [pdfPreview, setpdfPreview] = useState(false);
 
   return (
